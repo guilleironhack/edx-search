@@ -8,6 +8,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 from eventtracking import tracker as track
 import six
@@ -46,6 +47,7 @@ def _process_field_values(request):
 
 
 @require_POST
+@csrf_exempt
 def do_search(request, course_id=None):
     """
     Search view for http requests
