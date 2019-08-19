@@ -110,6 +110,7 @@ class SearchResultProcessor(object):
         Called from within search handler. Finds desired subclass and decides if the
         result should be removed and adds properties derived from the result information
         """
+        log.exception("ME CAGO EN TODO %s", json.dumps(dictionary, cls=DjangoJSONEncoder))
         result_processor = _load_class(getattr(settings, "SEARCH_RESULT_PROCESSOR", None), cls)
         srp = result_processor(dictionary, match_phrase)
         if srp.should_remove(user):
